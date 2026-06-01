@@ -1,6 +1,9 @@
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always"
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "always",
+    "source.fixAll.tslint": "explicit",
+    "source.addMissingImports": "explicit"
   },
   "eslint.validate": [
     "javascript",
