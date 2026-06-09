@@ -1,4 +1,6 @@
+import { LucideSquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -15,23 +17,31 @@ type TicketItemProps = {
 };
 
 const TicketItem = ({ ticket }: TicketItemProps) => {
+  const detailButton = (
+    <Button variant="outline" size="icon" asChild>
+      <Link href={ticketPath(ticket.id)}>
+        <LucideSquareArrowOutUpRight className="h-4 w-4" />
+      </Link>
+    </Button>
+  );
+
   return (
-    <Card className="w-full max-w-105">
-      <CardHeader>
-        <CardTitle className="text-2xl flex items-center gap-x-2">
-          <span>{TICKET_ICONS[ticket.status]}</span>
-          <h3 className="truncate">{ticket.title}</h3>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="line-clamp-3 whitespace-break-spaces">{ticket.content}</p>
-      </CardContent>
-      <CardFooter>
-        <Link href={ticketPath(ticket.id)} className="text-sm underline">
-          View
-        </Link>
-      </CardFooter>
-    </Card>
+    <div className="w-full max-w-105 flex gap-x-1">
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle className="text-2xl flex items-center gap-x-2">
+            <span>{TICKET_ICONS[ticket.status]}</span>
+            <h3 className="truncate">{ticket.title}</h3>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="line-clamp-3 whitespace-break-spaces">
+            {ticket.content}
+          </p>
+        </CardContent>
+      </Card>
+      <div className="flex flex-col gap-y-1">{detailButton}</div>
+    </div>
   );
 };
 
